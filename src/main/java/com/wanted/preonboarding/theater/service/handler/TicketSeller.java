@@ -10,4 +10,12 @@ public class TicketSeller {
     public TicketOffice getTicketOffice(){
         return ticketOffice;
     }
+
+    public void plusAmount(long amount) {
+        ticketOffice.plusAmount(amount);
+    }
+
+    public Ticket pubTicket() {
+        return this.ticketOffice.getTicket();
+    }
 }

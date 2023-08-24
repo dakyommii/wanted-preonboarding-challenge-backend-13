@@ -1,5 +1,6 @@
 package com.wanted.preonboarding.theater.service.handler;
 
+import com.wanted.preonboarding.theater.dto.RequestMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -7,15 +8,10 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class Theater {
 
-    public void enter(Audience audience, TicketSeller ticketSeller){
-        if(audience.getBag().hasInvitation()){
-            Ticket ticket = ticketSeller.getTicketOffice().getTicket();
-            audience.getBag().setTicket(ticket);
-        }else {
-            Ticket ticket = ticketSeller.getTicketOffice().getTicket();
-            audience.getBag().minusAmount(ticket.getFee());
-            ticketSeller.getTicketOffice().plusAmount(ticket.getFee());
-            audience.getBag().setTicket(ticket);
+    public void enter(Audience audience){
+        // 티켓 없으면 입장 불가
+        if(audience==null &&!audience.hasTicket()){
+            throw new RuntimeException("입장할 수 없습니다.");
         }
     }
 }

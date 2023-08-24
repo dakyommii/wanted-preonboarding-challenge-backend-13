@@ -24,6 +24,13 @@ public class Bag {
     }
     public void minusAmount(long amount) {
         this.amount -= amount;
+        if(this.amount<0) {
+            throw new RuntimeException("금액이 부족합니다.");
+        }
+    }
+
+    public Invitation getInvitation() {
+        return this.invitation;
     }
     public void plusAmount(long amount) {
         this.amount += amount;
